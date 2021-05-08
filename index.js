@@ -5,29 +5,33 @@ import { fifaData } from './fifa.js';
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
 
-const finals2014 = fifaData.filter(function(team){
-    return team.Year === 2014 && team.Stage === 'Final'
+const finals2014 = fifaData.filter(function(item){
+    if(item.Year === 2014 && item.Stage === 'Final'){
+        return item
+    }
+    // return team.Year === 2014 && team.Stage === 'Final' <-- Abstracted
 });
 console.log(finals2014);
 
 
 //(a) Home Team name for 2014 world cup final
-console.log(finals2014['Home Team Name']);
+console.log(finals2014[0]['Home Team Name']);
 
 
 //(b) Away Team name for 2014 world cup final
-console.log(finals2014['Away Team Name']);
+console.log(finals2014[0]['Away Team Name']);
+
 
 //(c) Home Team goals for 2014 world cup final
-console.log(finals2014['Home Team Goals'])
+console.log(finals2014[0]['Home Team Goals'])
 
 
 //(d) Away Team goals for 2014 world cup final
-console.log(finals2014['Away Team Goals'])
+console.log(finals2014[0]['Away Team Goals'])
 
 
 //(e) Winner of 2014 world cup final */
-console.log(finals2014['Win conditions'])
+console.log(finals2014[0]['Win conditions'])
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -38,10 +42,13 @@ Use getFinals to do the following:
 hint - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-   /* code here */
+function getFinals(data) {
+    return data.filter(function(item){
+        if(item.Stage === 'Final'){
+           return item
+       }
+   });
 }
-
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -50,10 +57,13 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(array, getFinalsCB) {
+    const years = [];
+    getFinalsCB(array).forEach(function(item){
+        years.push(item.Year);
+    });
+    return years
 }
-
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
