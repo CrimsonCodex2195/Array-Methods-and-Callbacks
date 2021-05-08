@@ -5,8 +5,8 @@ import { fifaData } from "./fifa.js";
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
 
-const finals2014 = fifaData.filter(function (item) {
-  if (item.Year === 2014 && item.Stage === "Final") {
+const finals2014 = fifaData.filter(function(item) {
+  if(item.Year === 2014 && item.Stage === "Final") {
     return item;
   }
   // return team.Year === 2014 && team.Stage === 'Final' <-- Abstracted
@@ -43,8 +43,8 @@ hint - you should be looking at the stage key inside of the objects
 */
 
 function getFinals(data) {
-  return data.filter(function (item) {
-    if (item.Stage === "Final") {
+  return data.filter(function(item) {
+    if(item.Stage === "Final") {
       return item;
     }
   });
@@ -59,7 +59,7 @@ Use the higher-order function called getYears to do the following:
 
 function getYears(array, getFinalsCB) {
   const years = [];
-  getFinalsCB(array).forEach(function (item) {
+  getFinalsCB(array).forEach(function(item) {
     years.push(item.Year);
   });
   return years; 
@@ -75,10 +75,10 @@ Use the higher-order function getWinners to do the following:
 
 function getWinners(array, getFinalsCB) {
   const winners = [];
-  getFinalsCB(array.forEach(function(item){
-    if(item['Win conditions'].includes(item['Home Team Name'])){
+  getFinalsCB(array.forEach(function(item) {
+    if(item['Win conditions'].includes(item['Home Team Name'])) {
       winners.push(item['Home Team Name']);
-    } else if(item['Win conditions'].includes(item['Away Team Name'])){
+    } else {
       winners.push(item['Away Team Name']);
     }
   }));
