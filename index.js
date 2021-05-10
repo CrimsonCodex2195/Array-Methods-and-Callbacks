@@ -5,7 +5,7 @@ import { fifaData } from "./fifa.js";
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 1: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Practice accessing data by console.log-ing the following pieces of data note, you may want to filter the data first 😉*/
 
-const finals2014 = fifaData.filter(function(item) {
+const finals2014 = fifaData.filter(item => {
   if(item.Year === 2014 && item.Stage === "Final") {
     return item;
   }
@@ -43,7 +43,7 @@ hint - you should be looking at the stage key inside of the objects
 */
 
 function getFinals(data) {
-  return data.filter(function(item) {
+  return data.filter(item => {
     if(item.Stage === "Final") {
       return item;
     }
@@ -59,7 +59,7 @@ Use the higher-order function called getYears to do the following:
 
 function getYears(array, getFinalsCB) {
   const years = [];
-  getFinalsCB(array).forEach(function(item) {
+  getFinalsCB(array).forEach(item => {
     years.push(item.Year);
   });
   return years; 
@@ -75,7 +75,7 @@ Use the higher-order function getWinners to do the following:
 
 function getWinners(array, getFinalsCB) {
   const winners = [];
-  getFinalsCB(array.forEach(function(item) {
+  getFinalsCB(array.forEach(item => {
     if(item['Win conditions'].includes(item['Home Team Name'])) {
       winners.push(item['Home Team Name']);
     } else {
@@ -96,9 +96,28 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-  /* code here */
+/*
+function getWinnersByYear(array, getYearsCB, getWinnersCB) {
+  const years = getYearsCB(array); 
+  const winners = getWinnersCB(array);
+  const winnersbyYear = [];
+  
+  for (let i = 0; i < array.length; i++) {
+    winnersbyYear.push(`In ${years[i]}, ${winners[i]} won the world cup!`);
+  }
+  return winnersbyYear;
 }
+*/
+
+function getWinnersByYear(array, getYearsCB, getWinnersCB) {
+  const years = getYearsCB(array); 
+  const winners = getWinnersCB(array);
+
+  return years.map((item, index) => {
+    return `In ${years[index]}, ${winners[index]} won the world cup!`
+  });
+}
+
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
