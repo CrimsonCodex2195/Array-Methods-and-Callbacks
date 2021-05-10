@@ -43,9 +43,7 @@ hint - you should be looking at the stage key inside of the objects
 */
 
 function getFinals(data) {
-  return data.filter(item => {
-    return item.Stage === "Final"
-  });
+  return data.filter(item => item.Stage === "Final");
 }
 
 
@@ -57,10 +55,8 @@ Use the higher-order function called getYears to do the following:
 
 function getYears(array, getFinalsCB) {
   const years = [];
-  getFinalsCB(array).forEach(item => {
-    years.push(item.Year);
-  });
-  return years; 
+  getFinalsCB(array).forEach(item => years.push(item.Year));
+  return years
 }
 
 
@@ -76,7 +72,7 @@ function getWinners(array, getFinalsCB) {
   getFinalsCB(array.forEach(item => {
     if(item['Win conditions'].includes(item['Home Team Name'])) {
       winners.push(item['Home Team Name']);
-    } else {
+    } else{
       winners.push(item['Away Team Name']);
     }
   }));
@@ -98,9 +94,7 @@ function getWinnersByYear(array, getYearsCB, getWinnersCB) {
   const years = getYearsCB(array); 
   const winners = getWinnersCB(array);
 
-  return years.map((year, index) => {
-    return `In ${year}, ${winners[index]} won the world cup!`
-  });
+  return years.map((year, index) => `In ${year}, ${winners[index]} won the world cup!`);
 }
 
 
@@ -115,12 +109,11 @@ Use the higher order function getAverageGoals to do the following:
 */
 
 function getAverageGoals(getFinalsCB) { 
-  const totalGoals = getFinalsCB.reduce((accumulator, currentValue) => {
-    return accumulator + currentValue['Home Team Goals'] + currentValue['Away Team Goals']
-  }, 0);
-
+  const totalGoals = getFinalsCB.reduce((accumulator, currentValue) => accumulator + currentValue['Home Team Goals'] + currentValue['Away Team Goals'], 0);
   return (totalGoals / getFinalsCB.length).toFixed(2)
 }
+
+
 /// 🥅 STRETCH 🥅 ///
 
 /* 💪💪💪💪💪 Stretch 1: 💪💪💪💪💪 
